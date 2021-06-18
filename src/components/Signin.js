@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { auth } from "../firebase";
 import { Link } from "react-router-dom";
 
 
 export default function Signin() {
+  const [errorMessage, setMessage] = useState('');
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const signIn = (e) => {
@@ -17,6 +18,8 @@ export default function Signin() {
         console.log(user);
       })
       .catch((err) => {
+        setMessage(err.message);
+        //alert(err.message);
         console.log(err);
       });
   };
@@ -24,6 +27,7 @@ export default function Signin() {
     <div>
       <form action="">
         <h1>Sign In Page</h1>
+        <h3 style={styles.errorMessage}>{errorMessage}</h3>
         <div style={styles.emailPasswordContainer}>
           <input placeholder="Email" ref={emailRef} type="email" />
           <input placeholder="Password" ref={passwordRef} type="password" />
@@ -43,4 +47,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
   },
+  errorMessage: {
+    color: "red"
+  }
 };

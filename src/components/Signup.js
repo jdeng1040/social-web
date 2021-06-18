@@ -7,6 +7,8 @@ export default function Signup() {
   const [lastName, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setMessage] = useState('');
+
   //database stuff
   let personalInfo = {
     fName: firstName,
@@ -30,13 +32,14 @@ export default function Signup() {
         console.log(user);
       })
       .catch((err) => {
-        alert(err.message);
+        setMessage(err.message);
         console.log(err);
       });
   };
   return (
     <div>
       <h1>SignUp Page</h1>
+      <h3 style={styles.errorMessage}>{errorMessage}</h3>
       <form action="">
         <div style={styles.emailPasswordContainer}>
           <input
@@ -85,4 +88,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
   },
+  errorMessage: {
+      color: "red"
+  }
 };
