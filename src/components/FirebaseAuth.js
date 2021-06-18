@@ -1,11 +1,7 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import { auth } from "../firebase";
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
     useHistory,
-    Redirect,
   } from "react-router-dom";
 
 export default function FirebaseAuth() {
@@ -18,11 +14,11 @@ export default function FirebaseAuth() {
         email: userAuth?.email,
       };
       if (userAuth) {
-        console.log("yep");
+        console.log("User is logged in");
         setUser(user);
         history.push("/home");
       } else {
-        console.log("nope");
+        console.log("User is logged out");
         setUser(null);
         history.push("/signin");
       }

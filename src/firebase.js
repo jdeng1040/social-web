@@ -17,9 +17,9 @@ const auth = firebase.auth();
 firebase.analytics();
 
 //database
-const firebase = require("firebase");
+
 // Required for side-effects
 require("firebase/firestore");
 
-export { auth };
+export { auth, db };
 export default db;

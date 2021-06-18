@@ -1,23 +1,42 @@
-import React, {useState} from 'react'
-import { auth } from '../firebase'
+import React, { useState } from "react";
+import { auth, db } from "../firebase";
 
 export default function Home() {
-    const [counter, setCounter] = useState(0);
-    return (
-        <div>
-            <h1>Homepage</h1>
-            
-            <button onClick={() => {
-                auth.signOut()
-            }}>Sign out</button>
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
 
-            <h3>{counter}</h3>
-            <button onClick={() => {
-                setCounter(1 + counter);
-            }}>Add 1</button>
-            <button onClick={() => {
-                setCounter(counter - 1);
-            }}>Minus 1</button>
-        </div>
-    )
+  const userEmail = auth.currentUser?.email;
+
+  // Create a reference to the users collection
+  const userRef = db.collection("userInfo");
+
+  // Create a query against the collection.
+  if (userEmail) {
+    const query = userRef.where("eMail", "==", userEmail);
+    query
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            setFirstName(doc.data().fName);
+            setLastName(doc.data().lName); 
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+  }
+  
+  return (
+    <div>
+      <h1>Homepage</h1>
+        <h3>Welcome {firstName} {lastName}</h3>
+      <button
+        onClick={() => {
+          auth.signOut();
+        }}
+      >
+        Sign out
+      </button>
+    </div>
+  );
 }

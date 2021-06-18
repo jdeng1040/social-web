@@ -1,18 +1,32 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 
 export default function Signup() {
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  //database stuff
+  let personalInfo = {
+    fName: firstName,
+    lName: lastName,
+    eMail: email,
+  };
   const signUp = (e) => {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((user) => {
+        db.collection("userInfo")
+          .doc()
+          .set(personalInfo)
+          .then(() => {
+            console.log("Document successfully written!");
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          });
         console.log(user);
       })
       .catch((err) => {
@@ -40,6 +54,7 @@ export default function Signup() {
             }}
           />
           <input
+            type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => {
@@ -47,6 +62,7 @@ export default function Signup() {
             }}
           />
           <input
+            type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => {
