@@ -1,26 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Home from "../src/components/Home";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
+import Signup from "./components/Signup";
+import Signin from "./components/Signin";
+import FirebaseAuth from "./components/FirebaseAuth";
+
+//cmd shift p
 
 function App() {
-  //const history = useHistory()
-  useEffect(() => {
-    auth.onAuthStateChanged((userAuth) => {
-      const user = {
-        uid: userAuth?.uid,
-        email: userAuth?.email,
-      };
-      if (userAuth) {
-        //history.push("/home")
-        console.log("yep");
-        // setUser(user);
-      } else {
-        console.log("nope");
-        // setUser(null);
-      }
-    });
-  }, [])
   return (
-    <h1>Auth2</h1>
+    <div>
+      <Router>
+        <FirebaseAuth />
+        <Switch>
+          <Route path="/home" component={Home} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/signin" component={Signin} />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 

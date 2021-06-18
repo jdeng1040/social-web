@@ -1,5 +1,6 @@
 import firebase from "firebase";
 
+//Auth
 var firebaseConfig = {
   apiKey: "AIzaSyDD-Zc693U6Ku2WiUgl9u2bWEIvlOMHX5A",
   authDomain: "fitnow-6c40b.firebaseapp.com",
@@ -14,6 +15,11 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const auth = firebase.auth();
 firebase.analytics();
+
+//database
+const firebase = require("firebase");
+// Required for side-effects
+require("firebase/firestore");
 
 export { auth };
 export default db;

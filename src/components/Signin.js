@@ -1,23 +1,11 @@
 import React, { useRef } from "react";
 import { auth } from "../firebase";
+import { Link } from "react-router-dom";
+
 
 export default function Signin() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const signUp = (e) => {
-    e.preventDefault();
-    auth
-      .createUserWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
-      )
-      .then((user) => {
-        console.log(user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   const signIn = (e) => {
     e.preventDefault();
     auth
@@ -43,9 +31,7 @@ export default function Signin() {
         <button onClick={signIn}>Sign In</button>
         <h6>
           Not registered?
-          <span onClick={signUp} className="signin__link">
-            Sign up
-          </span>
+          <Link to="/signup">Sign Up!</Link>
         </h6>
       </form>
     </div>
@@ -53,8 +39,8 @@ export default function Signin() {
 }
 
 const styles = {
-    emailPasswordContainer: {
-        display: "flex",
-        flexDirection: "column"
-    }
-}
+  emailPasswordContainer: {
+    display: "flex",
+    flexDirection: "column",
+  },
+};
