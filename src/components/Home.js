@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { auth, db } from "../firebase";
 import Sidebar from "./Sidebar"
-
+import Feed from "./Feed"
+import { Button } from "react-bootstrap";
 export default function Home() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -28,17 +29,19 @@ export default function Home() {
   }
   
   return (
-    <div>
-      <h1>Homepage</h1>
-        <h3>Welcome {firstName} {lastName}</h3>
-      <button
+    <div className="app">
+      <h3>
+        Welcome to FitNow {firstName} {lastName}!
+      </h3>
+      <Button
         onClick={() => {
           auth.signOut();
         }}
       >
         Sign out
-      </button>
+      </Button>
       <Sidebar />
+      <Feed />
     </div>
   );
 }
