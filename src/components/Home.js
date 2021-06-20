@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { auth, db } from "../firebase";
+import Sidebar from "./Sidebar"
 
 export default function Home() {
   const [firstName, setFirstName] = useState('');
@@ -37,6 +38,7 @@ export default function Home() {
       >
         Sign out
       </button>
+      <Sidebar />
     </div>
   );
 }
