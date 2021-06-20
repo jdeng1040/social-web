@@ -1,5 +1,5 @@
-import "./App.css";
 import Home from "../src/components/Home";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Route,
