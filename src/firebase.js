@@ -14,6 +14,7 @@ var firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const auth = firebase.auth();
+const storage = firebase.storage();
 firebase.analytics();
 
 //database
@@ -21,5 +22,5 @@ firebase.analytics();
 // Required for side-effects
 require("firebase/firestore");
 
-export { auth, db };
+export { auth, db, storage };
 export default db;

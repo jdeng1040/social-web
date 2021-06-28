@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
+import EditProfile from "./components/EditProfile";
 import FirebaseAuth from "./components/FirebaseAuth";
 
 //cmd shift p
@@ -20,6 +21,7 @@ function App() {
           <Route path="/home" component={Home} />
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} />
+          <Route path="/editprofile" component={EditProfile} />
         </Switch>
       </Router>
     </div>

@@ -76,21 +76,3 @@ export default function Signin() {
     </div>
   );
 }
-
-const styles = {
-  emailPasswordContainer: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  errorMessage: {
-    color: "red",
-  },
-  link: {},
-  form: {
-    borderRadius: "100px",
-    backgroundColor: "#DCDCDC",
-    paddingRight: "100px",
-    paddingLeft: "100px",
-    //padding: "100px",
-  },
-};

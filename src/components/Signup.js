@@ -8,6 +8,8 @@ export default function Signup() {
   const [lastName, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+
   const [errorMessage, setMessage] = useState("");
 
   //database stuff
@@ -15,18 +17,24 @@ export default function Signup() {
     fName: firstName,
     lName: lastName,
     eMail: email,
+    bio: "",
+    pictureUrl: "",
   };
   const signUp = (e) => {
     e.preventDefault();
-    if (firstName || lastName === "") {
+    if (firstName  === "" || lastName === "") {
       setMessage("Please enter your first and last name");
       console.log("error with first and last name");
-    } else {
+    } 
+    else if (password !== passwordConfirm) {
+      setMessage("Passwords do not match");
+    } 
+    else {
       auth
         .createUserWithEmailAndPassword(email, password)
         .then((user) => {
           db.collection("userInfo")
-            .doc()
+            .doc(auth.currentUser?.uid)
             .set(personalInfo)
             .then(() => {
               console.log("Document successfully written!");
@@ -108,6 +116,20 @@ export default function Signup() {
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
+              }}
+            />
+          </InputGroup>
+          <InputGroup className="mb-3">
+            <InputGroup.Prepend>
+              <InputGroup.Text id="basic-addon1">Password Confirmation</InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl
+              placeholder="Same as above"
+              aria-describedby="basic-addon1"
+              type="password"
+              value={passwordConfirm}
+              onChange={(e) => {
+                setPasswordConfirm(e.target.value);
               }}
             />
           </InputGroup>
