@@ -3,9 +3,13 @@ import { auth, db } from "../firebase";
 import Sidebar from "./Sidebar"
 import Feed from "./Feed"
 import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+
 export default function Home() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+
+  const history = useHistory();
 
   const userEmail = auth.currentUser?.email;
   // Create a reference to the users collection
@@ -40,11 +44,18 @@ export default function Home() {
       >
         Sign out
       </Button>
-      <Sidebar/>
-      <Feed 
-        firstNamePre={fn}
-        lastNamePre={ln}
-      />
+      <div>
+      <Button
+      variant="success"
+        onClick={() => {
+          history.push("/feed");
+        }}
+      >
+        Go to feed
+      </Button>
+      </div>
+      
+      {/* <Sidebar/> */}
     </div>
   );
 }
