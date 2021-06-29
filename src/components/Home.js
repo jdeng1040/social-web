@@ -34,7 +34,7 @@ export default function Home() {
   }
   return (
     <div style={{ padding: "15px" }}>
-      <h1>Homepage</h1>
+      <h1>Profile Page</h1>
       <Image src={url} thumbnail />
       <h3>
         Welcome to FitNow {firstName} {lastName}!
