@@ -22,14 +22,12 @@ export default function Signup() {
   };
   const signUp = (e) => {
     e.preventDefault();
-    if (firstName  === "" || lastName === "") {
+    if (firstName === "" || lastName === "") {
       setMessage("Please enter your first and last name");
       console.log("error with first and last name");
-    } 
-    else if (password !== passwordConfirm) {
+    } else if (password !== passwordConfirm) {
       setMessage("Passwords do not match");
-    } 
-    else {
+    } else {
       auth
         .createUserWithEmailAndPassword(email, password)
         .then((user) => {
@@ -52,17 +50,8 @@ export default function Signup() {
   };
   return (
     <div>
-      <h1
-        style={{
-          paddingBottom: "2rem",
-          paddingTop: "3rem",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        SignUp on FitNow now!
-      </h1>
-      <Card style={{ width: "40rem", marginLeft: "auto", marginRight: "auto" }}>
+      <h1 style={styles.title}>SignUp on FitNow now!</h1>
+      <Card style={styles.card}>
         <Card.Body>
           <h6 class="text-danger">{errorMessage}</h6>
           <InputGroup className="mb-3">
@@ -121,7 +110,9 @@ export default function Signup() {
           </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon1">Password Confirmation</InputGroup.Text>
+              <InputGroup.Text id="basic-addon1">
+                Password Confirmation
+              </InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl
               placeholder="Same as above"
@@ -134,11 +125,7 @@ export default function Signup() {
             />
           </InputGroup>
           <Button onClick={signUp}>Sign Up!</Button>
-          <Card.Text
-            style={{
-              paddingTop: "0.7rem",
-            }}
-          >
+          <Card.Text style={styles.registeredText}>
             Already registered? <Link to="/signin">Sign In</Link>
           </Card.Text>
         </Card.Body>
@@ -146,3 +133,19 @@ export default function Signup() {
     </div>
   );
 }
+const styles = {
+  title: {
+    paddingBottom: "2rem",
+    paddingTop: "3rem",
+    display: "flex",
+    justifyContent: "center",
+  },
+  card: {
+    width: "40rem",
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  registeredText: {
+    paddingTop: "0.7rem",
+  },
+};

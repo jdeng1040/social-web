@@ -3,7 +3,6 @@ import "./Feed.css";
 import Post from "./Post";
 import PostBox from "./PostBox";
 import { db, auth } from "../../firebase";
-import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import NavigationBar from "../NavBar";
 

@@ -125,9 +125,9 @@ export default function EditProfile() {
     }
     history.push("/home");
   };
-
+  
   return (
-    <div style={{ padding: "15px" }}>
+    <div style={styles.container}>
       <Form>
         <h2>Edit Profile</h2>
         <h6 class="text-danger">{errorMessage}</h6>
@@ -185,7 +185,7 @@ export default function EditProfile() {
           <Form.Control type="file" onChange={editPicture} />
         </Form.Group>
 
-        <div style={{ paddingBottom: "10px" }}>
+        <div style={styles.saveButton}>
           <Button onClick={changeProfile}>Save Changes</Button>
         </div>
         <Button
@@ -200,3 +200,12 @@ export default function EditProfile() {
     </div>
   );
 }
+
+const styles = {
+  container: {
+    padding: "15px"
+  }, 
+  saveButton: {
+    paddingBottom: "10px"
+  }
+};

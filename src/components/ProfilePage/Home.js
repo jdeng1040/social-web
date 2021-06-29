@@ -5,7 +5,6 @@ import { Button, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import NavigationBar from "../NavBar";
 
-
 export default function Home() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -35,7 +34,7 @@ export default function Home() {
       });
   }
   return (
-    <div style={{ paddingRight: "10rem", paddingLeft: "10rem", paddingTop: "1rem" }}>
+    <div style={styles.container}>
       <NavigationBar />
       <h1>Profile Page</h1>
       <Image src={url} thumbnail />
@@ -43,7 +42,7 @@ export default function Home() {
         Welcome to FitNow {firstName} {lastName}!
       </h3>
       <p>{bio}</p>
-      <div style={{ paddingBottom: "10px" }}>
+      <div style={styles.buttonContainer}>
         <Button
           onClick={() => {
             history.push("/editprofile");
@@ -71,3 +70,13 @@ export default function Home() {
     </div>
   );
 }
+const styles = {
+  container: {
+    paddingRight: "10rem",
+    paddingLeft: "10rem",
+    paddingTop: "1rem",
+  },
+  buttonContainer: {
+    paddingBottom: "10px"
+  },
+};

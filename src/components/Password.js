@@ -25,14 +25,7 @@ function Password() {
   return (
     <div>
       <h1>Change your Password</h1>
-      <Card
-        style={{
-          width: "40rem",
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginTop: "5rem",
-        }}
-      >
+      <Card style={styles.container}>
         <Card.Body>
           <Card.Title>Change your Password</Card.Title>
           <h6 class="text-danger">{errorMessage}</h6>
@@ -125,9 +118,7 @@ function PasswordLogin() {
             <Button
               variant="success"
               onClick={changePassword}
-              style={{
-                marginBottom: "0.5rem",
-              }}
+              style={styles.button}
             >
               Reset password
             </Button>
@@ -144,4 +135,15 @@ function PasswordLogin() {
     </div>
   );
 }
+const styles = {
+  container: {
+    width: "40rem",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: "5rem",
+  },
+  button: {
+    marginBottom: "0.5rem",
+  },
+};
 export { Password, PasswordLogin };
