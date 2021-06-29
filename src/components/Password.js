@@ -3,6 +3,7 @@ import { Button, Form, FormControl, InputGroup, Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { auth } from "../firebase";
 
+//password
 export default function Password() {
   const history = useHistory();
 
