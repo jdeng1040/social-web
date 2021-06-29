@@ -21,8 +21,8 @@ function Post({ displayName, username, verified, text, image, avatar }) {
             <h3>
               {displayName}{" "}
               <span className="post__headerSpecial">
-                {verified && <VerifiedUser className="post__badge" />} @
-                {username}
+                {verified && <VerifiedUser className="post__badge" />} @ 
+                {/* {username} */}
               </span>
             </h3>
           </div>

@@ -8,7 +8,6 @@ export default function Home() {
   const [lastName, setLastName] = useState('');
 
   const userEmail = auth.currentUser?.email;
-
   // Create a reference to the users collection
   const userRef = db.collection("userInfo");
 
@@ -27,7 +26,8 @@ export default function Home() {
         console.log("Error getting documents: ", error);
     });
   }
-  
+  const fn = firstName
+  const ln = lastName
   return (
     <div className="app">
       <h3>
@@ -40,8 +40,11 @@ export default function Home() {
       >
         Sign out
       </Button>
-      <Sidebar />
-      <Feed />
+      <Sidebar/>
+      <Feed 
+        firstNamePre={fn}
+        lastNamePre={ln}
+      />
     </div>
   );
 }

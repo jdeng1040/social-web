@@ -4,7 +4,7 @@ import Post from "./Post";
 import PostBox from "./PostBox"
 import { db } from "../firebase";
 
-function Feed() {
+function Feed( {firstNamePre, lastNamePre } ) {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
@@ -18,7 +18,10 @@ function Feed() {
             <div className="feed__header">
                 <h2> Home Page </h2>
             </div>
-            <PostBox />
+            <PostBox 
+                firstName={firstNamePre}
+                lastName={lastNamePre}
+            />
             {posts.map((post) => (  
                 <Post 
                     displayName={post.displayName}
