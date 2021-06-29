@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { auth, db } from "../firebase";
+import Sidebar from "./Sidebar"
+import Feed from "./Feed"
 import { Button, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
@@ -9,10 +11,9 @@ export default function Home() {
   const [bio, setBio] = useState("");
   const [url, setUrl] = useState("");
 
-  const history = useHistory();
-
   const userEmail = auth.currentUser?.email;
   const userId = auth.currentUser?.uid;
+  const history = useHistory();
 
   // Create a reference to the users collection
   const userRef = db.collection("userInfo");
@@ -65,6 +66,18 @@ export default function Home() {
       >
         Sign out
       </Button>
+      <div>
+      <Button
+      variant="success"
+        onClick={() => {
+          history.push("/feed");
+        }}
+      >
+        Go to feed
+      </Button>
+      </div>
+      
+      {/* <Sidebar/> */}
     </div>
   );
 }
