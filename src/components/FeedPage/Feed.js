@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./Feed.css";
 import Post from "./Post";
 import PostBox from "./PostBox";
-import { db, auth } from "../firebase";
+import { db, auth } from "../../firebase";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import NavigationBar from "../NavBar";
 
 function Feed() {
   const [posts, setPosts] = useState([]);
@@ -38,17 +39,17 @@ function Feed() {
   }, []);
 
   return (
-    <div className="feed">
+    <div
+      className="feed"
+      style={{
+        paddingRight: "10rem",
+        paddingLeft: "10rem",
+        paddingTop: "1rem",
+      }}
+    >
+      <NavigationBar />
       <div className="feed__header">
         <h2> Feed Page </h2>
-        <Button
-          variant="success"
-          onClick={() => {
-            history.push("/home");
-          }}
-        >
-          Go back home
-        </Button>
       </div>
       <PostBox firstName={firstName} lastName={lastName} />
       {posts.map((post) => (

@@ -49,7 +49,7 @@ export default function Signin() {
               }}
             />
           </InputGroup>
-          <InputGroup style={{ paddingBottom: "10px" }} className="mb-3">
+          <InputGroup  className="mb-3">
             <InputGroup.Prepend>
               <InputGroup.Text id="basic-addon1">Password</InputGroup.Text>
             </InputGroup.Prepend>
@@ -63,7 +63,13 @@ export default function Signin() {
               }}
             />
           </InputGroup>
-          <Button style={{ marginBottom: "10px" }} onClick={signIn}>Sign In</Button>
+          <div style={{ paddingBottom: "15px" }}>
+            <Link to="/passwordLogin">Forgot Password?</Link>
+          </div>
+
+          <Button style={{ marginBottom: "2px" }} onClick={signIn}>
+            Sign In
+          </Button>
           <Card.Text
             style={{
               paddingTop: "0.7rem",

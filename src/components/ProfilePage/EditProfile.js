@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { auth, db, storage } from "../firebase";
+import { auth, db, storage } from "../../firebase";
 import { useHistory } from "react-router-dom";
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 

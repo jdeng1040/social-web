@@ -14,7 +14,7 @@ export default function FirebaseAuth() {
       if (userAuth) {
         console.log("User is logged in");
         setUser(user);
-        history.push("/home");
+        history.push("/feed");
       } else {
         console.log("User is logged out");
         setUser(null);
