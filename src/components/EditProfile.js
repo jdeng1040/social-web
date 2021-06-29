@@ -18,7 +18,7 @@ export default function EditProfile() {
   const [bio, setBio] = useState("");
   const [bioEdit, setBioEdit] = useState("");
   const [picture, setPicture] = useState(null);
-
+  const [url, setUrl] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -58,9 +58,11 @@ export default function EditProfile() {
 
   const changeProfile = async () => {
     if (picture !== null) {
-      storage.ref(picture.name).put(picture);
-      const url = await storage.ref(picture.name).getDownloadURL();
-      console.log(url)
+      const storageRef = storage.ref(picture.name);
+      storageRef.put(picture);
+
+      const url = await storageRef.getDownloadURL();
+      setUrl(url);
       userRef
         .doc(userId)
         .update({

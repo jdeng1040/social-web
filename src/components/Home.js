@@ -39,9 +39,7 @@ export default function Home() {
       <h3>
         Welcome to FitNow {firstName} {lastName}!
       </h3>
-      <p>
-        {bio}
-      </p>
+      <p>{bio}</p>
       <div style={{ paddingBottom: "10px" }}>
         <Button
           onClick={() => {
@@ -49,6 +47,14 @@ export default function Home() {
           }}
         >
           Edit your profile
+        </Button>
+        <Button
+          variant="success"
+          onClick={() => {
+            history.push("/password");
+          }}
+        >
+          Change Password
         </Button>
       </div>
       <Button

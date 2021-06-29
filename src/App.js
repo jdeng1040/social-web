@@ -9,6 +9,7 @@ import Signup from "./components/Signup";
 import Signin from "./components/Signin";
 import EditProfile from "./components/EditProfile";
 import FirebaseAuth from "./components/FirebaseAuth";
+import Password from "./components/Password";
 
 //cmd shift p
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" component={Signup} />
           <Route path="/signin" component={Signin} />
           <Route path="/editprofile" component={EditProfile} />
+          <Route path="/password" component={Password} />
         </Switch>
       </Router>
     </div>
