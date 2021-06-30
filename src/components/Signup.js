@@ -9,6 +9,8 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [username, setUsername] = useState("");
+  //const [userCheck, setUserCheck] = useState(true);
 
   const [errorMessage, setMessage] = useState("");
 
@@ -19,14 +21,26 @@ export default function Signup() {
     eMail: email,
     bio: "",
     pictureUrl: "",
+    username: username,
   };
-  const signUp = (e) => {
+
+  const checkUsername = () => 
+    db.collection("userInfo")
+      .where("username", "==", username)
+      .get()
+  
+
+  const signUp = async (e) => {
     e.preventDefault();
+    const results = await checkUsername();
+    let usernameIsTaken = Boolean(results.size)
     if (firstName === "" || lastName === "") {
       setMessage("Please enter your first and last name");
       console.log("error with first and last name");
     } else if (password !== passwordConfirm) {
       setMessage("Passwords do not match");
+    } else if (usernameIsTaken) {
+      setMessage("Username already taken");
     } else {
       auth
         .createUserWithEmailAndPassword(email, password)
@@ -54,6 +68,19 @@ export default function Signup() {
       <Card style={styles.card}>
         <Card.Body>
           <h6 class="text-danger">{errorMessage}</h6>
+          <InputGroup className="mb-3">
+            <InputGroup.Prepend>
+              <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl
+              aria-describedby="basic-addon1"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+          </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Prepend>
               <InputGroup.Text id="basic-addon1">First Name</InputGroup.Text>
