@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { auth, db } from "../firebase";
-import Sidebar from "./Sidebar"
-import Feed from "./Feed"
+import { auth, db } from "../../firebase";
+
 import { Button, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import NavigationBar from "../NavBar";
 
 export default function Home() {
   const [firstName, setFirstName] = useState("");
@@ -34,14 +34,15 @@ export default function Home() {
       });
   }
   return (
-    <div style={{ padding: "15px" }}>
+    <div style={styles.container}>
+      <NavigationBar />
       <h1>Profile Page</h1>
       <Image src={url} thumbnail />
       <h3>
         Welcome to FitNow {firstName} {lastName}!
       </h3>
       <p>{bio}</p>
-      <div style={{ paddingBottom: "10px" }}>
+      <div style={styles.buttonContainer}>
         <Button
           onClick={() => {
             history.push("/editprofile");
@@ -66,18 +67,16 @@ export default function Home() {
       >
         Sign out
       </Button>
-      <div>
-      <Button
-      variant="success"
-        onClick={() => {
-          history.push("/feed");
-        }}
-      >
-        Go to feed
-      </Button>
-      </div>
-      
-      {/* <Sidebar/> */}
     </div>
   );
 }
+const styles = {
+  container: {
+    paddingRight: "10rem",
+    paddingLeft: "10rem",
+    paddingTop: "1rem",
+  },
+  buttonContainer: {
+    paddingBottom: "10px"
+  },
+};
