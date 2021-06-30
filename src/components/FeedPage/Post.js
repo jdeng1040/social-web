@@ -15,13 +15,9 @@ function Post({ displayName, verified, text, image, avatar }) {
       <Card style={styles.container}>
         <Card.Body>
           <Card.Title style={styles.title}>
-            <Avatar src={avatar} style={styles.titleAvatar}/>
+            <Avatar src={avatar} style={styles.titleAvatar} />
             {displayName}
-            {verified && (
-              <VerifiedUser
-                style={styles.verifiedIcon}
-              />
-            )}
+            {verified && <VerifiedUser style={styles.verifiedIcon} />}
           </Card.Title>
           <Card.Img variant="top" src={image} alt="" />
           <Card.Text>{text}</Card.Text>
@@ -46,12 +42,12 @@ const styles = {
     display: "flex",
   },
   titleAvatar: {
-    marginRight: "0.75rem"
+    marginRight: "0.75rem",
   },
   verifiedIcon: {
     fontSize: "15px !important",
     color: "blue",
-    marginLeft: "0.5rem"
+    marginLeft: "0.5rem",
   },
   postAvatar: {
     paddingTop: "0.75rem",

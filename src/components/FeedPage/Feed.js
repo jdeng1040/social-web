@@ -26,7 +26,7 @@ function Feed() {
       .then((doc) => {
         setFirstName(doc.data().fName);
         setLastName(doc.data().lName);
-        setUrl(doc.data().pictureUrl)
+        setUrl(doc.data().pictureUrl);
       })
       .catch((error) => {
         console.log(userId);
@@ -42,9 +42,7 @@ function Feed() {
   return (
     <div style={styles.container}>
       <NavigationBar />
-      <PostBox firstName={firstName} 
-      lastName={lastName} 
-      picture={url}/>
+      <PostBox firstName={firstName} lastName={lastName} picture={url} />
 
       {posts.map((post) => (
         <div styles={styles.post}>
