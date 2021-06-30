@@ -7,8 +7,15 @@ import {
   VerifiedUser,
 } from "@material-ui/icons";
 import React from "react";
+import db from "../firebase";
 import "./Post.css";
 
+// function deletePost(){
+//   db.collection("posts").doc()
+
+
+
+// }
 function Post({ displayName, username, verified, text, image, avatar }) {
   return (
     <div className="post">
@@ -36,6 +43,7 @@ function Post({ displayName, username, verified, text, image, avatar }) {
           <Repeat fontSize="small" />
           <FavoriteBorder fontSize="small" />
           <Publish fontSize="small" />
+          <button on/>
         </div>
       </div>
     </div>

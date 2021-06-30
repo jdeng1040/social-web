@@ -10,6 +10,7 @@ function Feed() {
   const [posts, setPosts] = useState([]);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [url, setUrl] = useState("");
   const userEmail = auth.currentUser?.email;
   const userId = auth.currentUser?.uid;
 
@@ -25,6 +26,7 @@ function Feed() {
       .then((doc) => {
         setFirstName(doc.data().fName);
         setLastName(doc.data().lName);
+        setUrl(doc.data().pictureUrl);
       })
       .catch((error) => {
         console.log(userId);
@@ -50,7 +52,7 @@ function Feed() {
           Go back home
         </Button>
       </div>
-      <PostBox firstName={firstName} lastName={lastName} />
+      <PostBox firstName={firstName} lastName={lastName} picUrl={url}/>
       {posts.map((post) => (
         <Post
           displayName={post.displayName}
