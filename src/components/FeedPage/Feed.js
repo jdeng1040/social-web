@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./Feed.css";
 import Post from "./Post";
 import PostBox from "./PostBox";
 import { db, auth } from "../../firebase";
@@ -10,6 +9,8 @@ function Feed() {
   const [posts, setPosts] = useState([]);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [url, setUrl] = useState(null);
+
   const userEmail = auth.currentUser?.email;
   const userId = auth.currentUser?.uid;
 
@@ -25,6 +26,7 @@ function Feed() {
       .then((doc) => {
         setFirstName(doc.data().fName);
         setLastName(doc.data().lName);
+        setUrl(doc.data().pictureUrl)
       })
       .catch((error) => {
         console.log(userId);
@@ -38,31 +40,37 @@ function Feed() {
   }, []);
 
   return (
-    <div
-      className="feed"
-      style={{
-        paddingRight: "10rem",
-        paddingLeft: "10rem",
-        paddingTop: "1rem",
-      }}
-    >
+    <div style={styles.container}>
       <NavigationBar />
-      <div className="feed__header">
-        <h2> Feed Page </h2>
-      </div>
-      <PostBox firstName={firstName} lastName={lastName} />
+      <PostBox firstName={firstName} 
+      lastName={lastName} 
+      picture={url}/>
+
       {posts.map((post) => (
-        <Post
-          displayName={post.displayName}
-          username={post.username}
-          verified={post.verified}
-          text={post.text}
-          avatar={post.avatar}
-          image={post.image}
-        />
+        <div styles={styles.post}>
+          <Post
+            displayName={post.displayName}
+            verified={post.verified}
+            text={post.text}
+            avatar={post.avatar}
+            image={post.image}
+          />
+        </div>
       ))}
     </div>
   );
 }
+const styles = {
+  container: {
+    paddingRight: "10rem",
+    paddingLeft: "10rem",
+    //paddingTop: "1rem",
+    flex: "0.4",
+    overflowY: "scroll",
+  },
+  post: {
+    marginTop: "0.5rem",
+  },
+};
 
 export default Feed;

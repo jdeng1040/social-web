@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { db } from "../../firebase";
 import { Button } from "react-bootstrap";
+import { Form, InputGroup, FormControl } from "react-bootstrap";
+import { Avatar } from "@material-ui/core";
 
-import "./PostBox.css";
-//import Avatar from "@material-ui/core";
-
-function PostBox({ firstName, lastName }) {
+function PostBox({ firstName, lastName, picture }) {
   const [postMessage, setPostMessage] = useState("");
   const [postImage, setPostImage] = useState("");
   const makePost = (e) => {
@@ -14,44 +13,48 @@ function PostBox({ firstName, lastName }) {
     db.collection("posts").add({
       username: firstName,
       displayName: firstName + " " + lastName,
-      avatar:
-        "https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-1/c0.33.200.200a/p200x200/51099653_766820610355014_8315780769297465344_o.jpg?_nc_cat=101&_nc_sid=7206a8&_nc_ohc=c1qBHkwAgVsAX8KynKU&_nc_ht=scontent-bom1-1.xx&oh=340b05bea693dd1671296e0c2d004bb3&oe=5F84CA62",
+      avatar: picture,
       verified: true,
       text: postMessage,
       image: postImage,
     });
     setPostImage("");
-    setPostImage("");
   };
 
   return (
-    <div className="postBox">
-      <form>
-        <div className="postBox__input">
-          {/* <Avatar /> */}
-          <input
+    <div>
+      <Form style={styles.container}>
+        <div style={styles.name}>
+          <Avatar src={picture} />
+          {firstName + " " + lastName}
+        </div>
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="How are you staying active?"
+            as="textarea"
+            rows={3}
             value={postMessage}
             onChange={(e) => setPostMessage(e.target.value)}
-            placeholder="What's happening?"
             type="text"
           />
-        </div>
-        {/* <input 
-                    placeholder="Optional: Enter image URL"
-                    value={postImage}
-                    onChange={(e) => setPostImage(e.target.value)}
-                    type="text"
-                /> */}
-
+        </InputGroup>
         <Button onClick={makePost} type="submit">
           Make Post
         </Button>
-        {/* <button onClick={makePost} type="submit" >
-                    Make Post
-                </button> */}
-      </form>
+      </Form>
     </div>
   );
 }
-
+const styles = {
+  container: {
+    borderColor: "rgb(199, 198, 198)",
+    borderWidth: "0.5px",
+    borderStyle: "solid",
+    backgroundColor: "#f3f3f3",
+    marginBottom: "0.5rem",
+  },
+  name: {
+    display: "flex",
+  },
+};
 export default PostBox;
