@@ -9,6 +9,7 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [username, setUsername] = useState("");
 
   const [errorMessage, setMessage] = useState("");
 
@@ -19,6 +20,7 @@ export default function Signup() {
     eMail: email,
     bio: "",
     pictureUrl: "",
+    username: "",
   };
   const signUp = (e) => {
     e.preventDefault();
@@ -54,6 +56,19 @@ export default function Signup() {
       <Card style={styles.card}>
         <Card.Body>
           <h6 class="text-danger">{errorMessage}</h6>
+          <InputGroup className="mb-3">
+            <InputGroup.Prepend>
+              <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl
+              aria-describedby="basic-addon1"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+          </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Prepend>
               <InputGroup.Text id="basic-addon1">First Name</InputGroup.Text>
