@@ -10,7 +10,7 @@ export default function Home() {
   const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
   const [url, setUrl] = useState("");
-
+  
   const userEmail = auth.currentUser?.email;
   const userId = auth.currentUser?.uid;
   const history = useHistory();
@@ -39,7 +39,7 @@ export default function Home() {
       <h1>Profile Page</h1>
       <Image src={url} thumbnail />
       <h3>
-        Welcome to FitNow {firstName} {lastName}!
+        {firstName} {lastName}
       </h3>
       <p>{bio}</p>
       <div style={styles.buttonContainer}>
