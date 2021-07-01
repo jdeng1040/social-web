@@ -6,10 +6,20 @@ import {
   Repeat,
   VerifiedUser,
 } from "@material-ui/icons";
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { db, auth } from "../../firebase";
 
-function Post({ displayName, verified, text, image, avatar }) {
+function Post({
+  displayName,
+  verified,
+  text,
+  image,
+  avatar,
+  username,
+  currentUserUsername,
+}) {
   return (
     <div>
       <Card style={styles.container}>
@@ -17,6 +27,16 @@ function Post({ displayName, verified, text, image, avatar }) {
           <Card.Title style={styles.title}>
             <Avatar src={avatar} style={styles.titleAvatar} />
             {displayName}
+            <Link
+              to={
+                username === currentUserUsername
+                  ? "/home"
+                  : `/otherProfile/${username}`
+              }
+              style={{ marginLeft: 5, color: "gray", textDecoration: "none" }}
+            >
+              @{username}
+            </Link>
             {verified && <VerifiedUser style={styles.verifiedIcon} />}
           </Card.Title>
           <Card.Img variant="top" src={image} alt="" />

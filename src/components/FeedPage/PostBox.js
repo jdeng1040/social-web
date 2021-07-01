@@ -4,14 +4,14 @@ import { Button } from "react-bootstrap";
 import { Form, InputGroup, FormControl } from "react-bootstrap";
 import { Avatar } from "@material-ui/core";
 
-function PostBox({ firstName, lastName, picture }) {
+function PostBox({ firstName, lastName, picture, username }) {
   const [postMessage, setPostMessage] = useState("");
   const [postImage, setPostImage] = useState("");
   const makePost = (e) => {
     e.preventDefault();
 
     db.collection("posts").add({
-      username: firstName,
+      username: username,
       displayName: firstName + " " + lastName,
       avatar: picture,
       verified: true,
@@ -27,6 +27,9 @@ function PostBox({ firstName, lastName, picture }) {
         <div style={styles.name}>
           <Avatar src={picture} />
           {firstName + " " + lastName}
+          
+          <div style={{ marginLeft: 5, color: "gray"}}>@{username}</div>
+          
         </div>
         <InputGroup className="mb-3">
           <FormControl

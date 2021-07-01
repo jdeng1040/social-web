@@ -10,6 +10,7 @@ function Feed() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [url, setUrl] = useState(null);
+  const [username, setUsername] = useState("");
 
   const userEmail = auth.currentUser?.email;
   const userId = auth.currentUser?.uid;
@@ -27,6 +28,7 @@ function Feed() {
         setFirstName(doc.data().fName);
         setLastName(doc.data().lName);
         setUrl(doc.data().pictureUrl);
+        setUsername(doc.data().username);
       })
       .catch((error) => {
         console.log(userId);
@@ -42,7 +44,12 @@ function Feed() {
   return (
     <div style={styles.container}>
       <NavigationBar />
-      <PostBox firstName={firstName} lastName={lastName} picture={url} />
+      <PostBox
+        firstName={firstName}
+        lastName={lastName}
+        picture={url}
+        username={username}
+      />
 
       {posts.map((post) => (
         <div styles={styles.post}>
@@ -52,6 +59,8 @@ function Feed() {
             text={post.text}
             avatar={post.avatar}
             image={post.image}
+            username={post.username}
+            currentUserUsername={username}
           />
         </div>
       ))}
@@ -62,7 +71,6 @@ const styles = {
   container: {
     paddingRight: "10rem",
     paddingLeft: "10rem",
-    //paddingTop: "1rem",
     flex: "0.4",
     overflowY: "scroll",
   },

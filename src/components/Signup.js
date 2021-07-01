@@ -22,6 +22,8 @@ export default function Signup() {
     bio: "",
     pictureUrl: "",
     username: username,
+    numFollow: 0,
+    numFollowing: 0,
   };
 
   const checkUsername = () => 

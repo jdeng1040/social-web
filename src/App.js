@@ -7,6 +7,7 @@ import EditProfile from "./components/ProfilePage/EditProfile";
 import FirebaseAuth from "./components/FirebaseAuth";
 import { Password, PasswordLogin } from "./components/Password";
 import Feed from "./components/FeedPage/Feed";
+import OtherProfile from "./components/ProfilePage/OtherProfile";
 
 //cmd shift p
 
@@ -23,6 +24,8 @@ function App() {
           <Route path="/editprofile" component={EditProfile} />
           <Route path="/password" component={Password} />
           <Route path="/passwordLogin" component={PasswordLogin} />
+          <Route path="/otherProfile" component={OtherProfile} />
+
         </Switch>
       </Router>
     </div>

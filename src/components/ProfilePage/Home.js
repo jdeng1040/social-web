@@ -10,6 +10,8 @@ export default function Home() {
   const [lastName, setLastName] = useState("");
   const [bio, setBio] = useState("");
   const [url, setUrl] = useState("");
+  const [numFollow, setFollow] = useState("");
+  const [numFollowing, setFollowing] = useState("");
   
   const userEmail = auth.currentUser?.email;
   const userId = auth.currentUser?.uid;
@@ -27,6 +29,8 @@ export default function Home() {
         setLastName(doc.data().lName);
         setBio(doc.data().bio);
         setUrl(doc.data().pictureUrl);
+        setFollow(doc.data().numFollow);
+        setFollowing(doc.data().numFollowing);
       })
       .catch((error) => {
         console.log(userId);
@@ -41,6 +45,9 @@ export default function Home() {
       <h3>
         {firstName} {lastName}
       </h3>
+      <h4>
+        Followers: {numFollow} Following: {numFollowing}
+      </h4>
       <p>{bio}</p>
       <div style={styles.buttonContainer}>
         <Button
@@ -74,7 +81,6 @@ const styles = {
   container: {
     paddingRight: "10rem",
     paddingLeft: "10rem",
-    paddingTop: "1rem",
   },
   buttonContainer: {
     paddingBottom: "10px"
