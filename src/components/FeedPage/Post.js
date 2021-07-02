@@ -2,14 +2,12 @@ import { Avatar } from "@material-ui/core";
 import {
   ChatBubbleOutline,
   FavoriteBorder,
-  Publish,
-  Repeat,
   VerifiedUser,
 } from "@material-ui/icons";
 import React from "react";
 import { Card } from "react-bootstrap";
 
-function Post({ displayName, verified, text, image, avatar }) {
+function Post({ displayName, verified, text, image, avatar, dateTime }) {
   return (
     <div>
       <Card style={styles.container}>
@@ -24,6 +22,7 @@ function Post({ displayName, verified, text, image, avatar }) {
           <div>
             <ChatBubbleOutline fontSize="small" />
             <FavoriteBorder fontSize="small" />
+            {dateTime}
           </div>
         </Card.Body>
       </Card>

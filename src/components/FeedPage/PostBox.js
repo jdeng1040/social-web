@@ -7,17 +7,27 @@ import { Avatar } from "@material-ui/core";
 function PostBox({ firstName, lastName, picture }) {
   const [postMessage, setPostMessage] = useState("");
   const [postImage, setPostImage] = useState("");
+  const [currentDateTime,setDateTime] = useState("")
+  const[orderTime, setOrderTime] = useState("")
+  var d = new Date()
   const makePost = (e) => {
     e.preventDefault();
-
-    db.collection("posts").add({
+    setDateTime((d.getDate()) + "/" + (d.getMonth()+1) + "/" + d.getFullYear())
+    setOrderTime(Date.now())
+    db.collection("posts")
+    .add(
+      {
       username: firstName,
       displayName: firstName + " " + lastName,
       avatar: picture,
       verified: true,
       text: postMessage,
       image: postImage,
-    });
+      time: currentDateTime,
+      order: orderTime
+    }
+    )
+    db.collection("posts").orderBy("order","desc");
     setPostImage("");
   };
 

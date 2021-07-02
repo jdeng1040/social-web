@@ -33,17 +33,21 @@ function Feed() {
         console.log("Error getting documents: ", error);
       });
   }
+
   useEffect(() => {
-    db.collection("posts").onSnapshot((snapshot) => {
+    db.collection("posts")
+    .orderBy('order',"desc")
+    .onSnapshot((snapshot) => {
       setPosts(snapshot.docs.map((doc) => doc.data()));
-    });
-  }, []);
+    })
+  }
+    
+  , []);
 
   return (
     <div style={styles.container}>
       <NavigationBar />
       <PostBox firstName={firstName} lastName={lastName} picture={url} />
-
       {posts.map((post) => (
         <div styles={styles.post}>
           <Post
@@ -52,6 +56,7 @@ function Feed() {
             text={post.text}
             avatar={post.avatar}
             image={post.image}
+            dateTime={post.time}
           />
         </div>
       ))}
