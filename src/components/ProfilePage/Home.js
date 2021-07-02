@@ -41,7 +41,12 @@ export default function Home() {
     <div style={styles.container}>
       <NavigationBar />
       <h1>Profile Page</h1>
-      <Image src={url} thumbnail />
+      {/* {url ? (
+          <Image src="../../pictures/placeholder.png" thumbnail />
+        ) : (
+          <Image src={url} thumbnail />
+        )} */}
+        <Image src={url} thumbnail />
       <h3>
         {firstName} {lastName}
       </h3>
