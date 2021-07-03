@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { db, auth } from "../../firebase";
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 function Post({
   displayName,
@@ -17,7 +18,9 @@ function Post({
   avatar,
   username,
   currentUserUsername,
-  dateTime
+  dateTime,
+  id,
+  likes
 }) {
   const [likesreal, setLikes] = useState(0);
   
