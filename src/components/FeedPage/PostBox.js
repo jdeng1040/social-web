@@ -7,6 +7,9 @@ import { Avatar } from "@material-ui/core";
 function PostBox({ firstName, lastName, picture, username }) {
   const [postMessage, setPostMessage] = useState("");
   const [postImage, setPostImage] = useState("");
+  const [currentDateTime,setDateTime] = useState("")
+  const[orderTime, setOrderTime] = useState("")
+  var d = new Date()
   const makePost = (e) => {
     e.preventDefault();
 
@@ -17,7 +20,11 @@ function PostBox({ firstName, lastName, picture, username }) {
       verified: true,
       text: postMessage,
       image: postImage,
-    });
+      time: currentDateTime,
+      order: orderTime
+    }
+    )
+    db.collection("posts").orderBy("order","desc");
     setPostImage("");
   };
 

@@ -2,8 +2,6 @@ import { Avatar } from "@material-ui/core";
 import {
   ChatBubbleOutline,
   FavoriteBorder,
-  Publish,
-  Repeat,
   VerifiedUser,
 } from "@material-ui/icons";
 import React, { useState } from "react";
@@ -19,6 +17,7 @@ function Post({
   avatar,
   username,
   currentUserUsername,
+  dateTime
 }) {
   return (
     <div>
@@ -44,6 +43,7 @@ function Post({
           <div>
             <ChatBubbleOutline fontSize="small" />
             <FavoriteBorder fontSize="small" />
+            {dateTime}
           </div>
         </Card.Body>
       </Card>

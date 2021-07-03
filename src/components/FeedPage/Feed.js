@@ -35,11 +35,16 @@ function Feed() {
         console.log("Error getting documents: ", error);
       });
   }
+
   useEffect(() => {
-    db.collection("posts").onSnapshot((snapshot) => {
+    db.collection("posts")
+    .orderBy('order',"desc")
+    .onSnapshot((snapshot) => {
       setPosts(snapshot.docs.map((doc) => doc.data()));
-    });
-  }, []);
+    })
+  }
+    
+  , []);
 
   return (
     <div style={styles.container}>
@@ -61,6 +66,7 @@ function Feed() {
             image={post.image}
             username={post.username}
             currentUserUsername={username}
+            dateTime={post.time}
           />
         </div>
       ))}
