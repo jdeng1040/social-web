@@ -12,22 +12,27 @@ function PostBox({ firstName, lastName, picture, username }) {
   var d = new Date()
   const makePost = (e) => {
     e.preventDefault();
-
-    db.collection("posts").add({
-      username: username,
+    var id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    setDateTime((d.getDate()) + "/" + (d.getMonth()+1) + "/" + d.getFullYear())
+    setOrderTime(Date.now())
+    db.collection("posts").doc(id)
+    .set(
+      {
+        username: username,
       displayName: firstName + " " + lastName,
       avatar: picture,
       verified: true,
       text: postMessage,
       image: postImage,
       time: currentDateTime,
-      order: orderTime
+      order: orderTime,
+      id: id,
+      likes: 0
     }
     )
     db.collection("posts").orderBy("order","desc");
     setPostImage("");
   };
-
   return (
     <div>
       <Form style={styles.container}>

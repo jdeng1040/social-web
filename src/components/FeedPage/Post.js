@@ -19,6 +19,21 @@ function Post({
   currentUserUsername,
   dateTime
 }) {
+  const [likesreal, setLikes] = useState(0);
+  
+  function deletePost(){
+    db.collection("posts").doc(id).delete().then(() => {
+      console.log("Document successfully deleted!");
+  }).catch((error) => {
+      console.error("Error removing document: ", error);
+  });
+  }
+  function likePost(){
+    setLikes(likes + 1)
+    db.collection("posts").doc(id).update({
+      likes: likesreal
+    })
+  }
   return (
     <div>
       <Card style={styles.container}>
@@ -41,16 +56,17 @@ function Post({
           <Card.Img variant="top" src={image} alt="" />
           <Card.Text>{text}</Card.Text>
           <div>
-            <ChatBubbleOutline fontSize="small" />
-            <FavoriteBorder fontSize="small" />
+            <ChatBubbleOutline fontSize="small"/>
+            <FavoriteBorder fontSize="small" onClick={likePost}/>
+            <HighlightOffIcon fontSize="small" onClick={deletePost}/>
             {dateTime}
+            Likes: {likes}
           </div>
         </Card.Body>
       </Card>
     </div>
   );
 }
-
 const styles = {
   container: {
     borderColor: "rgb(199, 198, 198)",

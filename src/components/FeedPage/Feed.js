@@ -67,6 +67,7 @@ function Feed() {
             username={post.username}
             currentUserUsername={username}
             dateTime={post.time}
+            id={post.id}
           />
         </div>
       ))}
