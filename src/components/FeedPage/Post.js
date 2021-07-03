@@ -4,10 +4,27 @@ import {
   FavoriteBorder,
   VerifiedUser,
 } from "@material-ui/icons";
-import React from "react";
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import React, {useState} from "react";
 import { Card } from "react-bootstrap";
+import db from "../../firebase";
 
-function Post({ displayName, verified, text, image, avatar, dateTime }) {
+function Post({ displayName, verified, text, image, avatar, dateTime, id, likes }) {
+  const [likesreal, setLikes] = useState(0);
+  
+  function deletePost(){
+    db.collection("posts").doc(id).delete().then(() => {
+      console.log("Document successfully deleted!");
+  }).catch((error) => {
+      console.error("Error removing document: ", error);
+  });
+  }
+  function likePost(){
+    setLikes(likes + 1)
+    db.collection("posts").doc(id).update({
+      likes: likesreal
+    })
+  }
   return (
     <div>
       <Card style={styles.container}>
@@ -20,16 +37,17 @@ function Post({ displayName, verified, text, image, avatar, dateTime }) {
           <Card.Img variant="top" src={image} alt="" />
           <Card.Text>{text}</Card.Text>
           <div>
-            <ChatBubbleOutline fontSize="small" />
-            <FavoriteBorder fontSize="small" />
+            <ChatBubbleOutline fontSize="small"/>
+            <FavoriteBorder fontSize="small" onClick={likePost}/>
+            <HighlightOffIcon fontSize="small" onClick={deletePost}/>
             {dateTime}
+            Likes: {likes}
           </div>
         </Card.Body>
       </Card>
     </div>
   );
 }
-
 const styles = {
   container: {
     borderColor: "rgb(199, 198, 198)",

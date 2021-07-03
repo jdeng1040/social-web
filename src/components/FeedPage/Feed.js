@@ -57,6 +57,7 @@ function Feed() {
             avatar={post.avatar}
             image={post.image}
             dateTime={post.time}
+            id={post.id}
           />
         </div>
       ))}
