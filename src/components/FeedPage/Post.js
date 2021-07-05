@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { db, auth } from "../../firebase";
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 function Post({
   displayName,
@@ -20,22 +20,26 @@ function Post({
   currentUserUsername,
   dateTime,
   id,
-  likes
+  likes,
 }) {
   const [likesreal, setLikes] = useState(0);
-  
-  function deletePost(){
-    db.collection("posts").doc(id).delete().then(() => {
-      console.log("Document successfully deleted!");
-  }).catch((error) => {
-      console.error("Error removing document: ", error);
-  });
+
+  function deletePost() {
+    db.collection("posts")
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
   }
-  function likePost(){
-    setLikes(likes + 1)
+  function likePost() {
+    setLikes(likes + 1);
     db.collection("posts").doc(id).update({
-      likes: likesreal
-    })
+      likes: likesreal,
+    });
   }
   return (
     <div>
@@ -59,9 +63,13 @@ function Post({
           <Card.Img variant="top" src={image} alt="" />
           <Card.Text>{text}</Card.Text>
           <div>
-            <ChatBubbleOutline fontSize="small"/>
-            <FavoriteBorder fontSize="small" onClick={likePost}/>
-            <HighlightOffIcon fontSize="small" onClick={deletePost}/>
+            <ChatBubbleOutline fontSize="small" />
+            <FavoriteBorder fontSize="small" onClick={likePost} />
+            <HighlightOffIcon
+              fontSize="small"
+              onClick={deletePost}
+              style={{ cursor: "pointer" }}
+            />
             {dateTime}
             Likes: {likes}
           </div>
