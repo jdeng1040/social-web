@@ -7,30 +7,28 @@ import { Avatar } from "@material-ui/core";
 function PostBox({ firstName, lastName, picture, username }) {
   const [postMessage, setPostMessage] = useState("");
   const [postImage, setPostImage] = useState("");
-  const [currentDateTime,setDateTime] = useState("")
-  const[orderTime, setOrderTime] = useState("")
-  var d = new Date()
+  
+  var d = new Date();
   const makePost = (e) => {
     e.preventDefault();
-    var id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    setDateTime((d.getDate()) + "/" + (d.getMonth()+1) + "/" + d.getFullYear())
-    setOrderTime(Date.now())
-    db.collection("posts").doc(id)
-    .set(
-      {
+    var id =
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15);
+    db.collection("posts")
+      .doc(id)
+      .set({
         username: username,
-      displayName: firstName + " " + lastName,
-      avatar: picture,
-      verified: true,
-      text: postMessage,
-      image: postImage,
-      time: currentDateTime,
-      order: orderTime,
-      id: id,
-      likes: 0
-    }
-    )
-    db.collection("posts").orderBy("order","desc");
+        displayName: firstName + " " + lastName,
+        avatar: picture,
+        verified: true,
+        text: postMessage,
+        image: postImage,
+        time: d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear(),
+        order: Date.now(),
+        id: id,
+        likes: 0,
+      });
+    db.collection("posts").orderBy("order", "desc");
     setPostImage("");
   };
   return (
@@ -39,9 +37,8 @@ function PostBox({ firstName, lastName, picture, username }) {
         <div style={styles.name}>
           <Avatar src={picture} />
           {firstName + " " + lastName}
-          
-          <div style={{ marginLeft: 5, color: "gray"}}>@{username}</div>
-          
+
+          <div style={{ marginLeft: 5, color: "gray" }}>@{username}</div>
         </div>
         <InputGroup className="mb-3">
           <FormControl

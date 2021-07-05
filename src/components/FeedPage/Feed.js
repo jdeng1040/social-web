@@ -38,14 +38,13 @@ function Feed() {
 
   useEffect(() => {
     db.collection("posts")
-    .orderBy('order',"desc")
-    .onSnapshot((snapshot) => {
-      setPosts(snapshot.docs.map((doc) => doc.data()));
-    })
-  }
-    
-  , []);
+      .orderBy("order", "desc")
+      .onSnapshot((snapshot) => {
+        setPosts(snapshot.docs.map((doc) => doc.data()));
+      });
+  }, []);
 
+  
   return (
     <div style={styles.container}>
       <NavigationBar />

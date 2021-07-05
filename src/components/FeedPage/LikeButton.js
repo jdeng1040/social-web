@@ -1,11 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, { useEffect, useState } from "react";
 function LikeButton() {
-    
-    
-    
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div></div>;
 }
