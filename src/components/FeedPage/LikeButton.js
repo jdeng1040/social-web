@@ -70,7 +70,7 @@ function LikeButton({likedUsers, currentUserUsername, id, likes}) {
     };
     
     return (
-        <button  onClick={click} />
+        <FavoriteBorder  onClick={click} />
     )
 }
 export default LikeButton
