@@ -25,13 +25,17 @@ function Post({
   likes
 }) {
   const [likesreal, setLikes] = useState(0);
-  
-  function deletePost(){
-    db.collection("posts").doc(id).delete().then(() => {
-      console.log("Document successfully deleted!");
-  }).catch((error) => {
-      console.error("Error removing document: ", error);
-  });
+
+  function deletePost() {
+    db.collection("posts")
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
   }
   // function likePost(){
   //   setLikes(likes + 1)
@@ -62,8 +66,8 @@ function Post({
           <Card.Text>{text}</Card.Text>
           <div>
             <ChatBubbleOutline fontSize="small"/>
-            <LikeButton likedUsers={likedUsers} currentUserUsername={currentUserUsername} id={id} likes={likes}/>
-            <HighlightOffIcon fontSize="small" onClick={deletePost}/>
+            <LikeButton likedUsers={likedUsers} currentUserUsername={currentUserUsername} id={id} likes={likes} style={{ cursor: "pointer" }}/>
+            <HighlightOffIcon fontSize="small" onClick={deletePost} style={{ cursor: "pointer" }}/>
             {dateTime}
             Likes: {likes}
           </div>
