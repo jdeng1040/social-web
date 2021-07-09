@@ -18,7 +18,7 @@ function PostBox({ firstName, lastName, picture, username }) {
     db.collection("posts").doc(id)
     .set(
       {
-        username: username,
+      username: username,
       displayName: firstName + " " + lastName,
       avatar: picture,
       verified: true,
@@ -27,7 +27,8 @@ function PostBox({ firstName, lastName, picture, username }) {
       time: currentDateTime,
       order: orderTime,
       id: id,
-      likes: 0
+      likes: 0,
+      likedUsers: []
     }
     )
     db.collection("posts").orderBy("order","desc");

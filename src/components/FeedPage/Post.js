@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { db, auth } from "../../firebase";
+import LikeButton from "./LikeButton"
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 function Post({
@@ -20,6 +21,7 @@ function Post({
   currentUserUsername,
   dateTime,
   id,
+  likedUsers,
   likes
 }) {
   const [likesreal, setLikes] = useState(0);
@@ -31,12 +33,12 @@ function Post({
       console.error("Error removing document: ", error);
   });
   }
-  function likePost(){
-    setLikes(likes + 1)
-    db.collection("posts").doc(id).update({
-      likes: likesreal
-    })
-  }
+  // function likePost(){
+  //   setLikes(likes + 1)
+  //   db.collection("posts").doc(id).update({
+  //     likes: likesreal
+  //   })
+  // }
   return (
     <div>
       <Card style={styles.container}>
@@ -60,7 +62,7 @@ function Post({
           <Card.Text>{text}</Card.Text>
           <div>
             <ChatBubbleOutline fontSize="small"/>
-            <FavoriteBorder fontSize="small" onClick={likePost}/>
+            <LikeButton likedUsers={likedUsers} currentUserUsername={currentUserUsername} id={id} likes={likes}/>
             <HighlightOffIcon fontSize="small" onClick={deletePost}/>
             {dateTime}
             Likes: {likes}

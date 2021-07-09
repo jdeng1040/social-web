@@ -11,7 +11,6 @@ function Feed() {
   const [lastName, setLastName] = useState("");
   const [url, setUrl] = useState(null);
   const [username, setUsername] = useState("");
-
   const userEmail = auth.currentUser?.email;
   const userId = auth.currentUser?.uid;
 
@@ -68,6 +67,8 @@ function Feed() {
             currentUserUsername={username}
             dateTime={post.time}
             id={post.id}
+            likedUsers={post.likedUsers}
+            likes={post.likes}
           />
         </div>
       ))}
